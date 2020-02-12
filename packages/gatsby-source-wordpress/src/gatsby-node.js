@@ -16,6 +16,7 @@ let _siteURL
 let _useACF = true
 let _acfOptionPageIds
 let _hostingWPCOM
+let _customHeaders
 let _auth
 let _cookies
 let _perPage
@@ -43,6 +44,7 @@ exports.sourceNodes = async (
     hostingWPCOM,
     useACF = true,
     acfOptionPageIds = [],
+    customHeaders = {},
     auth = {},
     cookies = {},
     verboseOutput,
@@ -65,6 +67,7 @@ exports.sourceNodes = async (
   _useACF = useACF
   _acfOptionPageIds = acfOptionPageIds
   _hostingWPCOM = hostingWPCOM
+  _customHeaders = customHeaders
   _auth = auth
   _cookies = cookies
   _perPage = perPage
@@ -83,6 +86,7 @@ exports.sourceNodes = async (
     _useACF,
     _acfOptionPageIds,
     _hostingWPCOM,
+    _customHeaders,
     _auth,
     _cookies,
     _perPage,

@@ -47,6 +47,7 @@ async function fetch({
   _useACF,
   _acfOptionPageIds,
   _hostingWPCOM,
+  _customHeaders,
   _auth,
   _cookies,
   _perPage,
@@ -106,6 +107,13 @@ Mama Route URL: ${url}
       options.auth = {
         username: _auth.htaccess_user,
         password: _auth.htaccess_pass,
+      }
+    }
+
+    if (_customHeaders) {
+      options.headers = {
+        ...options.headers,
+        ..._customHeaders
       }
     }
 
@@ -169,6 +177,7 @@ Fetching the JSON data from ${validRoutes.length} valid API Routes...
           apiUrl: url,
           _verbose,
           _perPage,
+          _customHeaders,
           _auth,
           _cookies,
           _accessToken,
@@ -255,6 +264,7 @@ async function fetchData({
   apiUrl,
   _verbose,
   _perPage,
+  _customHeaders,
   _auth,
   _cookies,
   _accessToken,
@@ -277,6 +287,7 @@ async function fetchData({
   let routeResponse = await getPages({
     url,
     _perPage,
+    _customHeaders,
     _auth,
     _cookies,
     _accessToken,
@@ -322,6 +333,7 @@ async function fetchData({
               apiUrl,
               _verbose,
               _perPage,
+              _customHeaders,
               _auth,
               _cookies,
               _accessToken,
@@ -339,6 +351,7 @@ async function fetchData({
             route: { url: `${url}/${menu.term_id}`, type: `${type}_items` },
             _verbose,
             _perPage,
+            _customHeaders,
             _auth,
             _accessToken,
             _cookies,
@@ -380,6 +393,7 @@ async function getPages(
   {
     url,
     _perPage,
+    _customHeaders,
     _auth,
     _cookies,
     _accessToken,
@@ -400,6 +414,13 @@ async function getPages(
         })}`,
       }
 
+      if (_customHeaders) {
+        o.headers = {
+          ...o.headers,
+          ..._customHeaders
+        }
+      }
+  
       if (_accessToken) {
         o.headers = {
           Authorization: `Bearer ${_accessToken}`,
